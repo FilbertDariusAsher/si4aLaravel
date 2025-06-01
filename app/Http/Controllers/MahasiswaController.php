@@ -67,12 +67,10 @@ class MahasiswaController extends Controller
         return view('mahasiswa.show', compact('mahasiswa'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Mahasiswa $mahasiswa)
+   public function edit(Mahasiswa $mahasiswa)
     {
-        //
+        $prodi = Prodi::all(); // ambil semua data prodi
+        return view('mahasiswa.edit', compact('mahasiswa', 'prodi'));
     }
 
     /**
@@ -81,11 +79,34 @@ class MahasiswaController extends Controller
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
         //
+        $input = $request->validate([
+            'npm' => 'required|unique:mahasiswa,npm,' . $mahasiswa->id,
+            'nama' => 'required',
+            'jk' => 'required',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required',
+            'asal_sma' => 'required',
+            'prodi_id' => 'required',
+        ]);
+        if ($request->file('foto')) {
+            // jika ada file foto yang diupload
+            if ($mahasiswa->foto) {
+                // jika mahasiswa sudah memiliki foto, hapus foto lama
+                $fotoPath = public_path('images/' . $mahasiswa->foto);
+                if (file_exists($fotoPath)) {
+                    unlink($fotoPath);
+                }
+            }
+            $file = $request->file('foto'); // ambil file foto
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename); // simpan file ke folder images
+            $input['foto'] = $filename; // simpan nama file ke database
+        }
+
+        $mahasiswa->update($input);
+        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil diupdate!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($mahasiswa)
     {
         $mahasiswa=Mahasiswa::findOrFail($mahasiswa);

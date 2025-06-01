@@ -52,9 +52,10 @@ class ProdiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Prodi $prodi)
+   public function show(Prodi $prodi)
     {
         //
+       return view('prodi.show', compact('prodi')); // mengirimkan data prodi dan fakultas ke view prodi.show
     }
 
     /**
@@ -89,8 +90,15 @@ class ProdiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prodi $prodi)
+    public function destroy($prodi)
     {
-        //
+        $prodi = Prodi ::findOrFail($prodi);
+        //dd($prodi);
+
+        //hapus data fakults
+        $prodi -> delete();
+
+        //redirect ke route fakultas index
+        return redirect()->route('prodi.index')->with('success','Prodi berhasil dihapus');
     }
 }
