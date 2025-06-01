@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\MataKuliah;
 use App\Models\Prodi;
-use App\Models\Jadwal;
-
 use App\Models\Sesi;
 use Illuminate\Http\Request;
 
