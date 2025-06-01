@@ -9,8 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up(): void{
         Schema::create('sesi', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 50);
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sesis');
+        Schema::dropIfExists('sesi');
     }
 };
