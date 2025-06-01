@@ -34,6 +34,7 @@
                       <thead>
                         <tr>
                           <th>Waktu Sesi</th>
+                          <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>

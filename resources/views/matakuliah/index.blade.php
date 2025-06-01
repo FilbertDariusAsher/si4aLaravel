@@ -34,6 +34,7 @@
                       <thead>
                         <tr>
                           <th>Mata Kuliah</th>
+                          <th>Aksi</th>
                         </tr>
                       </thead>
                       <tbody>

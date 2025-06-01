@@ -39,6 +39,7 @@
                             <th>Nama Kelas</th>
                             <th>Sesi</th>
                             <th>Nama Mata Kuliah</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +49,7 @@
                                 <td>{{ $item->kode_smt }}</td>
                                 <td>{{ $item->kelas}}</td>
                                 <td>{{ $item->matakuliah->id ?? '-'}}</td>
-                                <td>{{ $item->sesi->id ?? '-'}}</td>
+                                <td>{{ $item->sesi->nama}}</td>
                                 <td>
                                 <a href="{{ route('jadwal.show', $item->id) }}" class="btn btn-info">Show</a>
                                 <a href="{{ route('jadwal.edit', $item->id) }}" class="btn btn-warning">Edit</a>
