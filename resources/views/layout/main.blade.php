@@ -218,7 +218,7 @@
                     alt="User Image"
                   />
                   <p>
-                    {{ Auth::user()->name }} - P
+                    {{ Auth::user()->name }} - {{ strtoupper(Auth::user()->role) }}
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>

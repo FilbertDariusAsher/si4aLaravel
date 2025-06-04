@@ -35,7 +35,7 @@ class FakultasController extends Controller
     {
         //
         if ($request->user()->cannot('create', Fakultas::class)) {
-            abort(403);
+            abort(403, 'LU BUKAN ADMIN DEK.');
         }
         $input = $request->validate(
             [
