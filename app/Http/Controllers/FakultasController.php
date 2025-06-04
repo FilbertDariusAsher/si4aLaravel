@@ -34,7 +34,9 @@ class FakultasController extends Controller
     public function store(Request $request)
     {
         //
-        //validasi input
+        if ($request->user()->cannot('create', Fakultas::class)) {
+            abort(403);
+        }
         $input = $request->validate(
             [
                 'nama'=>'required|unique:fakultas',
