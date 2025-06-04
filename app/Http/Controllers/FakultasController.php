@@ -77,8 +77,12 @@ class FakultasController extends Controller
      */
     public function update(Request $request, $fakultas)
     {
-        
         $fakultas = Fakultas::findorfail($fakultas);
+
+        if ($request->user()->cannot('update', $fakultas)) {
+            abort(403, 'LU BUKAN ADMIN DEK.');
+        }
+        
         //validasi input
         $input = $request->validate(
             [
@@ -99,10 +103,14 @@ class FakultasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($fakultas)
+    public function destroy(request $request, $fakultas)
     {
         //
         $fakultas=Fakultas::findOrFail($fakultas);
+
+        if (request()->user()->cannot('delete', $fakultas)) {
+            abort(403, 'LU BUKAN ADMIN DEK.');
+        }
 
         $fakultas->delete();
 
