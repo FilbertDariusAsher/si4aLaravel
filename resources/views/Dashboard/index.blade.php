@@ -90,7 +90,7 @@
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Jumlah Mahasiswa'
+                    text: 'Jumlah Mahasiswa MDP'
                 }
             },
             tooltip: {
