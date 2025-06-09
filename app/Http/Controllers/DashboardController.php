@@ -16,6 +16,6 @@ class DashboardController extends Controller
         JOIN prodi On mahasiswa.prodi_id = prodi.id
         GROUP BY prodi.nama;
         ');
-        return view('dashboard.index', compact('mahasiswaprodi'));
+        return view('Dashboard.index', compact('mahasiswaprodi'));
     }
 }
